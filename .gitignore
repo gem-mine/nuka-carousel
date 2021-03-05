@@ -28,6 +28,8 @@ $RECYCLE.BIN/
 # App specific
 
 node_modules/
+es
+lib
 bower_components/
 .tmp
 dist

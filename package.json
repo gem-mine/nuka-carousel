@@ -1,5 +1,5 @@
 {
-  "name": "rmc-nuka-carousel",
+  "name": "@gem-mine/rmc-nuka-carousel",
   "version": "3.0.1",
   "description": "Pure React Carousel",
   "main": "./lib/index",
@@ -52,7 +52,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/react-component/nuka-carousel.git"
+    "url": "https://github.com/gem-mine/nuka-carousel.git"
   },
   "keywords": [
     "react",
@@ -62,7 +62,7 @@
   "author": "Ken Wheeler",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/react-component/nuka-carousel/issues"
+    "url": "https://github.com/gem-mine/nuka-carousel/issues"
   },
-  "homepage": "https://github.com/react-component/nuka-carousel"
+  "homepage": "https://github.com/gem-mine/nuka-carousel"
 }
