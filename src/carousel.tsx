@@ -82,6 +82,7 @@ export interface ICarouselProps {
   vertical?: boolean;
   width?: string;
   wrapAround?: boolean;
+  direction?: 'ltr' | 'rtl';
 }
 
 class Carousel extends React.Component<ICarouselProps, any> {
@@ -111,6 +112,7 @@ class Carousel extends React.Component<ICarouselProps, any> {
     width: '100%',
     wrapAround: false,
     style: {},
+    direction: 'rtl',
   } as ICarouselProps;
 
   touchObject: any;
@@ -326,8 +328,9 @@ class Carousel extends React.Component<ICarouselProps, any> {
           {...this.getTouchEvents()}
           {...this.getMouseEvents()}
           onClick={this.handleClick}
+          dir='ltr'
         >
-          <ul className="slider-list" ref="list" style={this.getListStyles()}>
+          <ul className="slider-list" ref="list" style={this.getListStyles()} dir={this.props.direction}>
             {children}
           </ul>
         </div>

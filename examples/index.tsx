@@ -49,6 +49,18 @@ class App extends React.Component<any, any> {
         <img src="https://gw.alipayobjects.com/zos/rmsportal/yUrSLGXUQPiyTTToFwQb.png" />
         <img src="https://gw.alipayobjects.com/zos/rmsportal/aKFkXZsPOaTsQfIHOEJy.png" />
       </Carousel>
+
+      <h3>rtl 支持</h3>
+      <Carousel
+        style={{ minHeight: 100 }}
+        direction='rtl'
+        wrapAround
+      >
+        <div style={{ height:150, background: '#ccc', fontSize: 20, fontWeight: 'bold' }}>rtl test 1</div>
+        <div style={{ height:150, background: '#ccc', fontSize: 20, fontWeight: 'bold' }}>rtl test 2</div>
+        <div style={{ height:150, background: '#ccc', fontSize: 20, fontWeight: 'bold' }}>rtl test 3</div>
+        <div style={{ height:150, background: '#ccc', fontSize: 20, fontWeight: 'bold' }}>rtl test 4</div>
+      </Carousel>
       <style dangerouslySetInnerHTML={{
         __html: `.space-carousel img { max-width: 300px; margin: 0 auto }`
       }} />
