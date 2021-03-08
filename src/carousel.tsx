@@ -112,7 +112,7 @@ class Carousel extends React.Component<ICarouselProps, any> {
     width: '100%',
     wrapAround: false,
     style: {},
-    direction: 'rtl',
+    direction: 'ltr',
   } as ICarouselProps;
 
   touchObject: any;
