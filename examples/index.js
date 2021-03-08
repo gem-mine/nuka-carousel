@@ -11502,7 +11502,7 @@ Carousel.defaultProps = {
     width: '100%',
     wrapAround: false,
     style: {},
-    direction: 'rtl'
+    direction: 'ltr'
 };
 /* harmony default export */ __webpack_exports__["a"] = (Carousel);
 
