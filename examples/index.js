@@ -10360,12 +10360,21 @@ var App = function (_React$Component) {
         var _this = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_possibleConstructorReturn___default()(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
 
         _this.state = {
-            slideIndex: 0
+            slideIndex1: 0,
+            slideIndex2: 0,
+            list: []
         };
         return _this;
     }
 
     __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_createClass___default()(App, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.setState({
+                list: [1, 2, 3, 4, 5, 6, 7]
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
             var _this2 = this;
@@ -10375,15 +10384,12 @@ var App = function (_React$Component) {
                 null,
                 __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                     __WEBPACK_IMPORTED_MODULE_4__src_carousel__["a" /* default */],
-                    { style: { minHeight: 100 }, autoplay: true, wrapAround: true, autoplayInterval: 2000, resetAutoplay: false, slideIndex: this.state.slideIndex, afterSlide: function afterSlide(newSlideIndex) {
-                            return _this2.setState({ slideIndex: newSlideIndex });
+                    { style: { minHeight: 100 }, autoplay: true, wrapAround: true, autoplayInterval: 2000, resetAutoplay: false, slideIndex: this.state.slideIndex1, afterSlide: function afterSlide(newSlideIndex) {
+                            return _this2.setState({ slideIndex1: newSlideIndex });
                         } },
-                    __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('img', { src: 'http://placehold.it/1000x400&text=slide1', style: { maxWidth: '100%' } }),
-                    __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('img', { src: 'http://placehold.it/1000x400&text=slide2', style: { maxWidth: '100%' } }),
-                    __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('img', { src: 'http://placehold.it/1000x400&text=slide3', style: { maxWidth: '100%' } }),
-                    __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('img', { src: 'http://placehold.it/1000x400&text=slide4', style: { maxWidth: '100%' } }),
-                    __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('img', { src: 'http://placehold.it/1000x400&text=slide5', style: { maxWidth: '100%' } }),
-                    __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('img', { src: 'http://placehold.it/1000x400&text=slide6', style: { maxWidth: '100%' } })
+                    this.state.list.map(function (item) {
+                        return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('img', { src: 'http://placehold.it/1000x400&text=slide' + item, style: { maxWidth: '100%' } });
+                    })
                 ),
                 __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                     'div',
@@ -10433,8 +10439,8 @@ var App = function (_React$Component) {
                 ),
                 __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                     __WEBPACK_IMPORTED_MODULE_4__src_carousel__["a" /* default */],
-                    { className: 'space-carousel', cellSpacing: -60, autoplay: true, wrapAround: true, slideIndex: this.state.slideIndex, afterSlide: function afterSlide(newSlideIndex) {
-                            return _this2.setState({ slideIndex: newSlideIndex });
+                    { className: 'space-carousel', cellSpacing: -60, autoplay: true, wrapAround: true, slideIndex: this.state.slideIndex2, afterSlide: function afterSlide(newSlideIndex) {
+                            return _this2.setState({ slideIndex2: newSlideIndex });
                         } },
                     __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('img', { src: 'https://gw.alipayobjects.com/zos/rmsportal/hCyqdPEXhsCRfOXJFQbC.png' }),
                     __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('img', { src: 'https://gw.alipayobjects.com/zos/rmsportal/QCuJKZxSjlRCtMzagoYS.png' }),
@@ -10737,12 +10743,12 @@ var Carousel = function (_React$Component) {
             if (this.props.slideIndex !== nextProps.slideIndex && nextProps.slideIndex !== this.state.currentSlide) {
                 this.goToSlide(nextProps.slideIndex);
             }
-            if (this.props.autoplay !== nextProps.autoplay) {
-                if (nextProps.autoplay) {
-                    this.startAutoplay();
-                } else {
-                    this.stopAutoplay();
-                }
+            if (nextProps.autoplay && this.props.slideIndex !== nextProps.slideIndex) {
+                this.stopAutoplay();
+                this.startAutoplay();
+            }
+            if (!nextProps.autoplay) {
+                this.stopAutoplay();
             }
         }
     }, {
@@ -11074,9 +11080,6 @@ var Carousel = function (_React$Component) {
     }, {
         key: 'startAutoplay',
         value: function startAutoplay() {
-            if (__WEBPACK_IMPORTED_MODULE_5_react___default.a.Children.count(this.props.children) <= 1) {
-                return;
-            }
             this.autoplayID = setInterval(this.autoplayIterator, this.props.autoplayInterval);
         }
     }, {
