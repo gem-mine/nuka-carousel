@@ -7,8 +7,16 @@ import easingTypes, { easeOutElastic } from 'tween-functions';
 
 class App extends React.Component<any, any> {
   state = {
-    slideIndex: 0,
+    slideIndex1: 0,
+    slideIndex2: 0,
+    list: []
   };
+
+  componentDidMount(){
+    this.setState({
+      list:[1,2,3,4,5,6,7],
+    })
+  } 
 
   render() {
     return (<div>
@@ -18,14 +26,9 @@ class App extends React.Component<any, any> {
         wrapAround
         autoplayInterval={2000}
         resetAutoplay={false}
-        slideIndex={this.state.slideIndex}
-        afterSlide={newSlideIndex => this.setState({ slideIndex: newSlideIndex })}>
-        <img src="http://placehold.it/1000x400&text=slide1" style={{ maxWidth: '100%' }} />
-        <img src="http://placehold.it/1000x400&text=slide2" style={{ maxWidth: '100%' }} />
-        <img src="http://placehold.it/1000x400&text=slide3" style={{ maxWidth: '100%' }} />
-        <img src="http://placehold.it/1000x400&text=slide4" style={{ maxWidth: '100%' }} />
-        <img src="http://placehold.it/1000x400&text=slide5" style={{ maxWidth: '100%' }} />
-        <img src="http://placehold.it/1000x400&text=slide6" style={{ maxWidth: '100%' }} />
+        slideIndex={this.state.slideIndex1}
+        afterSlide={newSlideIndex => this.setState({ slideIndex1: newSlideIndex })}>
+          {this.state.list.map((item)=><img src={`http://placehold.it/1000x400&text=slide${item}`} style={{ maxWidth: '100%' }} />)}
       </Carousel>
       <div style={{width: '50%', margin: 'auto'}}>
         <button onClick={() => this.setState({ slideIndex: 0 })}>1</button>
@@ -41,8 +44,8 @@ class App extends React.Component<any, any> {
         cellSpacing={-60}
         autoplay
         wrapAround
-        slideIndex={this.state.slideIndex}
-        afterSlide={newSlideIndex => this.setState({ slideIndex: newSlideIndex })}>
+        slideIndex={this.state.slideIndex2}
+        afterSlide={newSlideIndex => this.setState({ slideIndex2: newSlideIndex })}>
         <img src="https://gw.alipayobjects.com/zos/rmsportal/hCyqdPEXhsCRfOXJFQbC.png" />
         <img src="https://gw.alipayobjects.com/zos/rmsportal/QCuJKZxSjlRCtMzagoYS.png" />
         <img src="https://gw.alipayobjects.com/zos/rmsportal/YHuGiyKMKMHysahEdDNO.png" />
