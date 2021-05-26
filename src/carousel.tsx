@@ -160,12 +160,12 @@ class Carousel extends React.Component<ICarouselProps, any> {
     if (this.props.slideIndex !== nextProps.slideIndex && nextProps.slideIndex !== this.state.currentSlide) {
       this.goToSlide(nextProps.slideIndex);
     }
-    if (this.props.autoplay !== nextProps.autoplay) {
-      if (nextProps.autoplay) {
-        this.startAutoplay();
-      } else {
-        this.stopAutoplay();
-      }
+    if (nextProps.autoplay && this.props.slideIndex !== nextProps.slideIndex) {
+      this.stopAutoplay();
+      this.startAutoplay();
+    }
+    if (!nextProps.autoplay) {
+      this.stopAutoplay();
     }
   }
 
@@ -598,9 +598,6 @@ class Carousel extends React.Component<ICarouselProps, any> {
   }
 
   startAutoplay() {
-    if (React.Children.count(this.props.children) <= 1) {
-      return;
-    }
     this.autoplayID = setInterval(this.autoplayIterator, this.props.autoplayInterval);
   }
 
