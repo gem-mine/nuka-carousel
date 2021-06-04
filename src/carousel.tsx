@@ -326,7 +326,6 @@ class Carousel extends React.Component<ICarouselProps, any> {
           ref="frame"
           style={this.getFrameStyles()}
           {...this.getTouchEvents()}
-          {...this.getMouseEvents()}
           onClick={this.handleClick}
           dir='ltr'
         >
@@ -411,82 +410,6 @@ class Carousel extends React.Component<ICarouselProps, any> {
         self.handleMouseOut();
       },
       onTouchCancel(e) {
-        self.handleSwipe(e);
-      },
-    };
-  }
-
-  getMouseEvents() {
-    let self = this;
-    if (this.props.dragging === false) {
-      return null;
-    }
-
-    return {
-      onMouseOver() {
-        self.handleMouseOver();
-      },
-      onMouseOut() {
-        self.handleMouseOut();
-      },
-      onMouseDown(e) {
-        self.touchObject = {
-          startX: e.clientX,
-          startY: e.clientY,
-        };
-
-        self.setState({
-          dragging: true,
-        });
-      },
-      onMouseMove(e) {
-        if (!self.state.dragging) {
-          return;
-        }
-
-        const direction = self.swipeDirection(
-          self.touchObject.startX,
-          e.clientX,
-          self.touchObject.startY,
-          e.clientY,
-        );
-
-        if (direction !== 0) {
-          e.preventDefault();
-        }
-
-        const length = self.props.vertical ? Math.round(
-          Math.sqrt(Math.pow(e.clientY - self.touchObject.startY, 2)),
-        ) : Math.round(
-          Math.sqrt(Math.pow(e.clientX - self.touchObject.startX, 2)),
-        );
-
-        self.touchObject = {
-          startX: self.touchObject.startX,
-          startY: self.touchObject.startY,
-          endX: e.clientX,
-          endY: e.clientY,
-          length,
-          direction,
-        };
-
-        self.setState({
-          left: self.props.vertical ? 0 : self.getTargetLeft(self.touchObject.length * self.touchObject.direction),
-          top: self.props.vertical ? self.getTargetLeft(self.touchObject.length * self.touchObject.direction) : 0,
-        });
-      },
-      onMouseUp(e) {
-        if (!self.state.dragging) {
-          return;
-        }
-
-        self.handleSwipe(e);
-      },
-      onMouseLeave(e) {
-        if (!self.state.dragging) {
-          return;
-        }
-
         self.handleSwipe(e);
       },
     };
