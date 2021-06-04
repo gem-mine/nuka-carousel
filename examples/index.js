@@ -10873,7 +10873,7 @@ var Carousel = function (_React$Component) {
                 { className: ['slider', this.props.className || ''].join(' '), ref: 'slider', style: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, this.getSliderStyles(), this.props.style) },
                 __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                     'div',
-                    __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({ className: 'slider-frame', ref: 'frame', style: this.getFrameStyles() }, this.getTouchEvents(), this.getMouseEvents(), { onClick: this.handleClick, dir: 'ltr' }),
+                    __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({ className: 'slider-frame', ref: 'frame', style: this.getFrameStyles() }, this.getTouchEvents(), { onClick: this.handleClick, dir: 'ltr' }),
                     __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                         'ul',
                         { className: 'slider-list', ref: 'list', style: this.getListStyles(), dir: this.props.direction },
@@ -10931,65 +10931,6 @@ var Carousel = function (_React$Component) {
                     self.handleMouseOut();
                 },
                 onTouchCancel: function onTouchCancel(e) {
-                    self.handleSwipe(e);
-                }
-            };
-        }
-    }, {
-        key: 'getMouseEvents',
-        value: function getMouseEvents() {
-            var self = this;
-            if (this.props.dragging === false) {
-                return null;
-            }
-            return {
-                onMouseOver: function onMouseOver() {
-                    self.handleMouseOver();
-                },
-                onMouseOut: function onMouseOut() {
-                    self.handleMouseOut();
-                },
-                onMouseDown: function onMouseDown(e) {
-                    self.touchObject = {
-                        startX: e.clientX,
-                        startY: e.clientY
-                    };
-                    self.setState({
-                        dragging: true
-                    });
-                },
-                onMouseMove: function onMouseMove(e) {
-                    if (!self.state.dragging) {
-                        return;
-                    }
-                    var direction = self.swipeDirection(self.touchObject.startX, e.clientX, self.touchObject.startY, e.clientY);
-                    if (direction !== 0) {
-                        e.preventDefault();
-                    }
-                    var length = self.props.vertical ? Math.round(Math.sqrt(Math.pow(e.clientY - self.touchObject.startY, 2))) : Math.round(Math.sqrt(Math.pow(e.clientX - self.touchObject.startX, 2)));
-                    self.touchObject = {
-                        startX: self.touchObject.startX,
-                        startY: self.touchObject.startY,
-                        endX: e.clientX,
-                        endY: e.clientY,
-                        length: length,
-                        direction: direction
-                    };
-                    self.setState({
-                        left: self.props.vertical ? 0 : self.getTargetLeft(self.touchObject.length * self.touchObject.direction),
-                        top: self.props.vertical ? self.getTargetLeft(self.touchObject.length * self.touchObject.direction) : 0
-                    });
-                },
-                onMouseUp: function onMouseUp(e) {
-                    if (!self.state.dragging) {
-                        return;
-                    }
-                    self.handleSwipe(e);
-                },
-                onMouseLeave: function onMouseLeave(e) {
-                    if (!self.state.dragging) {
-                        return;
-                    }
                     self.handleSwipe(e);
                 }
             };
